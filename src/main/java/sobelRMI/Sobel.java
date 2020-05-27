@@ -15,14 +15,14 @@ public class Sobel {
 			
 		public BufferedImage applyFilter() {
 			    
-			    // the sobel matrix in two 2D arrays
+			    
 			    int[][] sx = {{-1,0,1},{-1,0,1},{-1,0,1}};
 			    int[][] sy = {{-1,-1,-1},{0,0,0},{1,1,1}};
 			    
-			    // a sobel template 2D array for calculation
+			    
 			    int[][] sob;
 			        
-		        // get image width and height
+		        
 		        int width = image.getWidth();
 		        int height = image.getHeight();
 		        
@@ -42,17 +42,17 @@ public class Sobel {
 		                int g = (pixel >> 8) & 0xff;
 		                int b = pixel & 0xff;
 		                
-		                // calculate average
+		        
 		                int avg = (r+g+b)/3;
 		                
 		                sob[x][y] = avg;
-		                // replace RGB value with average
+		        
 		                pixel = (avg << 24) | (avg << 16) | (avg << 8) | avg;
 		                imgNueva.setRGB(x, y, pixel);
 		            }
 		        }
 		        
-		        // sobel calculation
+		        
 		        for (int y = 1; y < height-1; y++) {
 		            for (int x = 1; x < width-1; x++) {
 		                int px = (sx[0][0] * sob[x-1][y-1]) + (sx[0][1] * sob[x][y-1]) +
@@ -79,7 +79,7 @@ public class Sobel {
 		                imgNueva.setRGB(x, y, pix.getRGB());
 		            }
 		        } 
-		        //Recorto la img
+		        
 		        imgNueva = imgNueva.getSubimage(2,2,width-3,height-3);
 
 		        return imgNueva;
